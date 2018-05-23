@@ -1,0 +1,2952 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API Reference",
+    "description": "DatamanOS API Reference"
+  },
+  "paths": {
+    "/oapi/v1/namespaces/{namespace}/templates": {
+      "get": {
+        "summary": "获取应用模板列表",
+        "description": "返回命名空间{namespace}内的所有应用模板",
+        "tags": [
+          "Templates(app)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.TemplateList",
+            "schema": {
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "没有权限."
+          }
+        }
+      },
+      "post": {
+        "summary": "创建模板",
+        "description": "创建模板",
+        "tags": [
+          "Templates(app)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "v1.Template",
+            "description": "JSON格式的Template对象.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "objects": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Template",
+            "schema": {
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "objects": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "没有权限."
+          }
+        }
+      }
+    },
+    "/oapi/v1/namespaces/{namespace}/templates/{name}": {
+      "get": {
+        "summary": "获取单个模板",
+        "description": "根据名称获取指定的模板",
+        "tags": [
+          "Templates(app)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "pvc名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Template",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "objects": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除模板",
+        "description": "根据名称删除指定的模板",
+        "tags": [
+          "Templates(app)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "pvc名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功"
+          }
+        }
+      },
+      "patch": {
+        "summary": "更新模板",
+        "description": "更新模板",
+        "tags": [
+          "Templates(app)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "pvc名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "unversioned.Patch",
+            "in": "body",
+            "required": true,
+            "description": "要修改的模板信息",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "objects": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Template"
+          }
+        }
+      }
+    },
+    "/oapi/v1/namespaces/{namespace}/processedtemplates": {
+      "post": {
+        "summary": "渲染模板",
+        "description": "根据模板中提供的参数渲染出一个模板.",
+        "tags": [
+          "Templates(app)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "template",
+            "description": "待渲染的模板.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "objects": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Template",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "objects": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oapi/v1/namespaces/{namespace}/deploymentconfigs": {
+      "get": {
+        "summary": "获取dc列表",
+        "description": "返回命名空间{namespace}内所有的dc",
+        "tags": [
+          "Templates(app)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.DeploymentConfigList",
+            "schema": {
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "创建deploymentconfig",
+        "description": "创建deployentconfig.",
+        "tags": [
+          "Deplymentconfigs(dc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "deloymentconfig",
+            "description": "JSON格式的deploymentconfig对象.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.DeploymentConfig",
+            "schema": {
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oapi/v1/namespaces/{namespace}/deploymentconfigs/{name}": {
+      "get": {
+        "summary": "获取指定的deploymentconfig",
+        "description": "根据名称获取指定的deploymentconfig.",
+        "tags": [
+          "Deplymentconfigs(dc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "deploymentconfig的名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.DeploymentConfig",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "更新deploymentconfig",
+        "description": "根据名称更新指定的deploymentconfig",
+        "tags": [
+          "Deplymentconfigs(dc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "deploymentconfig的名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "deloymentconfig",
+            "description": "JSON格式的deploymentconfig对象.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.DeploymentConfig",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除deploymentconfig",
+        "description": "根据名称删除指定的deploymentconfig",
+        "tags": [
+          "Deplymentconfigs(dc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "deploymentconfig的名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "unversioned.Status",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "reson": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object"
+                },
+                "code": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oapi/v1/namespaces/{namespace}/deploymentconfigs/{name}/instantiate": {
+      "post": {
+        "summary": "部署deploymentconfig",
+        "description": "实例化部署指定的deploymentconfig",
+        "tags": [
+          "Deplymentconfigs(dc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "deploymentconfig的名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "v1.DeploymentRequest",
+            "description": "JSON格式的deploymentconfig对象.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "latest": {
+                  "type": "boolean"
+                },
+                "force": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.DeploymentRequest",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "latest": {
+                  "type": "boolean"
+                },
+                "force": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/namespaces/{namespace}/services": {
+      "get": {
+        "summary": "获取所有的services",
+        "description": "获取{namespace}内的所有service",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "创建service",
+        "description": "创建service",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "v1.Service",
+            "description": "JSON格式的deploymentconfig对象.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Service",
+            "schema": {
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/namespaces/{namespace}/services/{name}": {
+      "get": {
+        "summary": "获取service",
+        "description": "根据service名称获取指定的service",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "service名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Service",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除service",
+        "description": "根据service名称删除指定的service",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "service名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "unversioned.Status",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "reson": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object"
+                },
+                "code": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "更新service",
+        "description": "根据service名称部分更新指定的service",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "service名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "unversioned.Patch",
+            "description": "JSON格式的Patch.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Service",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oapi/v1/namespaces/{namespace}/routes": {
+      "get": {
+        "summary": "获取所有的routes",
+        "description": "获取{namespace}下的所有route.",
+        "tags": [
+          "Routes"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "创建route",
+        "description": "创建route",
+        "tags": [
+          "Routes"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "v1.Route",
+            "description": "JSON格式的route对象.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Route",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oapi/v1/namespaces/{namespace}/routes/{name}": {
+      "get": {
+        "summary": "获取route",
+        "description": "根据名称获取指定的route",
+        "tags": [
+          "Routes"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "service名称",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Route",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除route",
+        "description": "根据名称删除指定的route",
+        "tags": [
+          "Routes"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "service名称",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "unversioned.Status",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "reson": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object"
+                },
+                "code": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "更新route",
+        "description": "根据名称更新route",
+        "tags": [
+          "Routes"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "service名称",
+            "type": "string"
+          },
+          {
+            "name": "unversioned.Patch",
+            "in": "body",
+            "required": true,
+            "description": "要修改的route信息",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Route",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/namespaces/{namespace}/secrets": {
+      "get": {
+        "summary": "获取secrect列表",
+        "description": "获取namespace下的所有secret",
+        "tags": [
+          "Secrets"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.SecretList",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "创建secrect",
+        "description": "创建secrect",
+        "tags": [
+          "Secrets"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "v1.Secret",
+            "in": "body",
+            "required": true,
+            "description": "要修改的route信息",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "data": {
+                  "type": "object"
+                },
+                "stringData": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Secret",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "data": {
+                  "type": "object"
+                },
+                "stringData": {
+                  "type": "object"
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/namespaces/{namespace}/secrets/{name}": {
+      "get": {
+        "summary": "获取secret",
+        "description": "根据名称获取指定的secret",
+        "tags": [
+          "Secrets"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "secret名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.Secret",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "data": {
+                  "type": "object"
+                },
+                "stringData": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除secret",
+        "description": "根据名称删除指定的secret",
+        "tags": [
+          "Secrets"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "secret名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功"
+          }
+        }
+      },
+      "patch": {
+        "summary": "更新secret",
+        "description": "更新secret",
+        "tags": [
+          "Secrets"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "secret名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "v1.Secret",
+            "in": "body",
+            "required": true,
+            "description": "要修改的secret信息",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "data": {
+                  "type": "object"
+                },
+                "stringData": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "unversioned.Status",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "reson": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object"
+                },
+                "code": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oapi/v1/namespaces/{namespace}/imagestreams": {
+      "get": {
+        "summary": "获取imagestream列表",
+        "description": "获取namespace下的所有的imagestream",
+        "tags": [
+          "Imagestreams"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "创建imagestream",
+        "description": "创建imagestream",
+        "tags": [
+          "Imagestreams"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "v1.ImageStream",
+            "in": "body",
+            "required": true,
+            "description": "JSON格式的imagestream对象",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.ImageStream",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oapi/v1/namespaces/{namespace}/imagestreams/{name}": {
+      "get": {
+        "summary": "获取imagestream",
+        "description": "根据名称获取指定的imagestream",
+        "tags": [
+          "Imagestreams"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "secret名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.ImageStream",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除imagestream",
+        "description": "根据名称删除指定的imagestream",
+        "tags": [
+          "Imagestreams"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "secret名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "unversioned.Status",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "reson": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object"
+                },
+                "code": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "更新imagestream",
+        "description": "更新imagestream",
+        "tags": [
+          "Imagestreams"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "secret名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "v1.Secret",
+            "in": "body",
+            "required": true,
+            "description": "要修改的secret信息",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.ImageStream",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oapi/v1/namespaces/{namespace}/buildconfigs": {
+      "get": {
+        "summary": "获取buildconfig列表",
+        "description": "获取namespace下的所有的buildconfig",
+        "tags": [
+          "Buildconfigs(bc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.BuildConfigList",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "创建buildconfig",
+        "description": "创建buildconfig",
+        "tags": [
+          "Buildconfigs(bc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "v1.ImageStream",
+            "in": "body",
+            "required": true,
+            "description": "JSON格式的imagestream对象",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.BuildConfig",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/oapi/v1/namespaces/{namespace}/buildconfigs/{name}": {
+      "get": {
+        "summary": "获取buildconfig",
+        "description": "根据名称获取指定的buildconfig",
+        "tags": [
+          "Buildconfigs(bc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "buildconfig名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.BuildConfig",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除buildconfig",
+        "description": "根据名称删除指定的buildconfig",
+        "tags": [
+          "Buildconfigs(bc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "buildconfig名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "unversioned.Status",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "reson": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object"
+                },
+                "code": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "更新buildconfig",
+        "description": "更新buildconfig",
+        "tags": [
+          "Buildconfigs(bc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "buildconfig名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "v1.Secret",
+            "in": "body",
+            "required": true,
+            "description": "要修改的buildconfig信息",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.BuildConfig",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/namespaces/{namespace}/persistentvolumeclaims": {
+      "get": {
+        "summary": "获取pvc列表",
+        "description": "获取namespace下的所有的pvc",
+        "tags": [
+          "Persistentvolumeclaims(pvc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.PersistentVolumeClaimList",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "创建pvc",
+        "description": "创建pvc",
+        "tags": [
+          "Persistentvolumeclaims(pvc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "v1.PersistentVolumeClaim",
+            "in": "body",
+            "required": true,
+            "description": "JSON格式的pvc对象",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.PersistentVolumeClaim",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}": {
+      "get": {
+        "summary": "获取pvc",
+        "description": "根据名称获取指定的pvc",
+        "tags": [
+          "Persistentvolumeclaims(pvc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "pvc名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.PersistentVolumeClaim",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除pvc",
+        "description": "根据名称删除指定的pvc",
+        "tags": [
+          "Persistentvolumeclaims(pvc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "pvc名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "unversioned.Status",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "reson": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object"
+                },
+                "code": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "更新pvc",
+        "description": "更新pvc",
+        "tags": [
+          "Persistentvolumeclaims(pvc)"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "pvc名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "v1.PersistentVolumeClaim",
+            "in": "body",
+            "required": true,
+            "description": "要修改的pvc信息",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.PersistentVolumeClaim",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "spec": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/namespaces/{namespace}/configmaps": {
+      "get": {
+        "summary": "获取configmap列表",
+        "description": "获取namespace下的所有的configmap",
+        "tags": [
+          "Configmaps"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.ConfigMapList",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "创建configmap",
+        "description": "创建configmap",
+        "tags": [
+          "Configmaps"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "v1.ConfigMap",
+            "in": "body",
+            "required": true,
+            "description": "JSON格式的configmap对象",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.ConfigMap",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/namespaces/{namespace}/configmaps/{name}": {
+      "get": {
+        "summary": "获取configmap",
+        "description": "根据名称获取指定的configmap",
+        "tags": [
+          "Configmaps"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "pvc名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.ConfigMap",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "删除configmap",
+        "description": "根据名称删除指定的configmap",
+        "tags": [
+          "Configmaps"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "pvc名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "unversioned.Status",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "reson": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object"
+                },
+                "code": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "更新configmap",
+        "description": "更新configmap",
+        "tags": [
+          "Configmaps"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "description": "命名空间",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "pvc名称",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "认证后的token",
+            "type": "string"
+          },
+          {
+            "name": "unversioned.Patch",
+            "in": "body",
+            "required": true,
+            "description": "要修改的configmap信息",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "v1.ConfigMap",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string"
+                },
+                "apiVersion": {
+                  "type": "string"
+                },
+                "metadata": {
+                  "type": "object"
+                },
+                "data": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
